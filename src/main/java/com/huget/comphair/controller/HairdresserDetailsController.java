@@ -30,6 +30,7 @@ public class HairdresserDetailsController {
     }
 
     @PostMapping("/hairdressers/{hairdresserId}/details")
+    // TODO: handle rejecting request when hairdresser already has details
     public ResponseEntity<HairdresserDetails> createDetails(
             @PathVariable(value = "hairdresserId")Long hairdresserId,
             @RequestBody HairdresserDetails hairdresserDetailsRequest) {
@@ -46,15 +47,15 @@ public class HairdresserDetailsController {
     @PutMapping("/details/{id}")
     public ResponseEntity<HairdresserDetails> updateDescription(@PathVariable("id") Long id,
                                                             @RequestBody HairdresserDetails hairdresserDetailsRequest){
-        HairdresserDetails details = hairdresserDetailsRepository.findById(id)
+        HairdresserDetails hairdresserDetails = hairdresserDetailsRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Id " + id + " not found"));
 
-        details.setDescription(hairdresserDetailsRequest.getDescription());
-        return new ResponseEntity<>(hairdresserDetailsRepository.save(hairdresserDetailsRequest), HttpStatus.OK);
+        hairdresserDetails.setDescription(hairdresserDetailsRequest.getDescription());
+        return new ResponseEntity<>(hairdresserDetailsRepository.save(hairdresserDetails), HttpStatus.OK);
     }
 
     @DeleteMapping("/details/{id}")
-    public ResponseEntity<HttpStatus> deleteDetails(@PathVariable("id") long id){
+    public ResponseEntity<HttpStatus> deleteDetailsById(@PathVariable("id") long id){
         hairdresserDetailsRepository.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
