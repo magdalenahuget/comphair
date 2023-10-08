@@ -9,3 +9,9 @@ Keep track of clients' appointment history, making it easier to schedule future 
 Showcase your work by uploading photos of clients before and after their hairstyling sessions.
 ## Client Notes
 Maintain detailed notes about each client, including the products used and specific preferences, ensuring personalized and consistent service.
+
+# Technology stack
+- Java 17
+- Spring Boot 3.1.4 (with Spring Web MVC, Spring Data JPA)
+- PostgreSQL 42.x.x
+- Maven
