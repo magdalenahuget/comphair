@@ -33,7 +33,7 @@ public class ClientController {
         return new ResponseEntity<>(clients, HttpStatus.OK);
     }
 
-    @GetMapping("/clients/{id}")
+    @GetMapping("/clients/{clientId}")
     public ResponseEntity<Client> getClientById(
             @PathVariable(value = "clientId") Long clientId) {
         Client client = clientRepository.findById(clientId)
@@ -51,7 +51,7 @@ public class ClientController {
         return new ResponseEntity<>(client, HttpStatus.CREATED);
     }
 
-    @PutMapping("/clients/{id}")
+    @PutMapping("/clients/update/{clientId}")
     public ResponseEntity<Client> updateClient(@PathVariable("clientId") Long clientId,
                                                @RequestBody Client clientRequest) {
         Client client = clientRepository.findById(clientId)
@@ -61,29 +61,29 @@ public class ClientController {
         return new ResponseEntity<>(newClient, HttpStatus.OK);
     }
 
-    @DeleteMapping("/clients/{id}")
+    @DeleteMapping("/clients/delete/{clientId}")
     public ResponseEntity<HttpStatus> deleteClient(@PathVariable("clientId") long clientId) {
         clientRepository.deleteById(clientId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @DeleteMapping("/hairdressers/{hairdresserId}/clients")
-    public ResponseEntity<Client> deleteAllClientsOfHairdresser(@PathVariable(value = "hairdresserId") Long hairdresserId) {
+    public ResponseEntity<HttpStatus> deleteAllClientsOfHairdresser(@PathVariable(value = "hairdresserId") Long hairdresserId) {
         if(hairdresserRepository.existsById(hairdresserId)){
             throw new ResourceNotFoundException("Not found hairdresser with id = " + hairdresserId);
         }
-        clientRepository.deleteAllClientsOfHairdresser(hairdresserId);
+        clientRepository.deleteByHairdresserId(hairdresserId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping({"/hairdressers/{hairdresserName}/clients"})
-    public ResponseEntity<List<Client>> getAllClientsByHairdresserName(
-            @PathVariable(value = "hairdresserName") String hairdresserName) {
-        Hairdresser hairdresser = hairdresserRepository.findByName(hairdresserName);
+    @GetMapping({"/hairdressers/{hairdresserNick}/clients"})
+    public ResponseEntity<List<Client>> getAllClientsByHairdresserNick(
+            @PathVariable(value = "hairdresserNick") String hairdresserNick) {
+        Hairdresser hairdresser = hairdresserRepository.findByNick(hairdresserNick);
         if (hairdresser == null) {
-            throw new ResourceNotFoundException("Not found hairdresser with name = " + hairdresserName);
+            throw new ResourceNotFoundException("Not found hairdresser with nick = " + hairdresserNick);
         }
-        List<Client> clients = clientRepository.findAllClientsByHairdresserName(hairdresserName);
+        List<Client> clients = clientRepository.findAllClientsByHairdresserNick(hairdresserNick);
         return new ResponseEntity<>(clients, HttpStatus.OK);
     }
 

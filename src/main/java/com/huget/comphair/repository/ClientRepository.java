@@ -13,9 +13,9 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
     List<Client> findByHairdresserId(long hairdresserId);
 
     @Transactional
-    void deleteAllClientsOfHairdresser(long hairdresserId);
+    void deleteByHairdresserId(long hairdresserId);
 
     List<Client> findClientsByLastName(String lastName);
 
-    List<Client> findAllClientsByHairdresserName(String hairdresserName);
+    List<Client> findAllClientsByHairdresserNick(String hairdresserName);
 }

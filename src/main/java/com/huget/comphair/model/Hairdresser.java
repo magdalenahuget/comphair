@@ -20,8 +20,8 @@ public class Hairdresser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "nick")
+    private String nick;
 
     @Column(name = "hairdresser_type")
     private HairdresserType hairdresserType;
@@ -32,8 +32,8 @@ public class Hairdresser {
     @Column(name = "password")
     private String password;
 
-    public Hairdresser(String name, HairdresserType hairdresserType, String email, String password) {
-        this.name = name;
+    public Hairdresser(String nick, HairdresserType hairdresserType, String email, String password) {
+        this.nick = nick;
         this.hairdresserType = hairdresserType;
         this.email = email;
         this.password = password;
