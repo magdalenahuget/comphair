@@ -50,7 +50,7 @@ public class HairdresserController {
     @PostMapping("/hairdressers")
     public ResponseEntity<Hairdresser> createHairdresser(@RequestBody Hairdresser hairdresser){
         Hairdresser hairdresser1 = hairdresserRepository.save(new Hairdresser(
-                hairdresser.getName(),
+                hairdresser.getNick(),
                 hairdresser.getHairdresserType(),
                 hairdresser.getEmail(),
                 hairdresser.getPassword()));
@@ -61,8 +61,10 @@ public class HairdresserController {
     public ResponseEntity<Hairdresser> updateHairdresser(@PathVariable("id") long id, @RequestBody Hairdresser hairdresser){
         Hairdresser hairdresser1 = hairdresserRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Not found Hairdresser with id = " + id));
-        hairdresser1.setName(hairdresser.getName());
+        hairdresser1.setNick(hairdresser.getNick());
         hairdresser1.setHairdresserType(hairdresser.getHairdresserType());
+        hairdresser1.setEmail(hairdresser1.getEmail());
+        hairdresser1.setPassword(hairdresser1.getPassword());
         return new ResponseEntity<>(hairdresserRepository.save(hairdresser), HttpStatus.OK);
     }
 
