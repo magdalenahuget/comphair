@@ -13,4 +13,6 @@ public interface HairdresserRepository extends JpaRepository<Hairdresser, Long> 
     List<Hairdresser> findByHairdresserType(HairdresserType hairdresserType);
 
     Hairdresser findByNick(String hairdresserNick);
+
+    List<Hairdresser> findHairdressersByActionsId(Long actionId);
 }

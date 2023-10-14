@@ -1,6 +1,6 @@
 package com.huget.comphair.controller;
 
-import com.huget.comphair.exception.ResourceNotFoundException;
+import  com.huget.comphair.exception.ResourceNotFoundException;
 import com.huget.comphair.model.Client;
 import com.huget.comphair.model.Hairdresser;
 import com.huget.comphair.repository.ClientRepository;
@@ -45,7 +45,7 @@ public class ClientController {
     public ResponseEntity<Client> createClient(@PathVariable(value = "hairdresserId") Long hairdresserId,
                                                @RequestBody Client clientRequest) {
         Hairdresser hairdresser = hairdresserRepository.findById(hairdresserId)
-                .orElseThrow(() -> new ResourceNotFoundException("Not found Tutorial with id = " + hairdresserId));
+                .orElseThrow(() -> new ResourceNotFoundException("Not found hairdresser with id = " + hairdresserId));
         clientRequest.setHairdresser(hairdresser);
         Client client = clientRepository.save(clientRequest);
         return new ResponseEntity<>(client, HttpStatus.CREATED);
