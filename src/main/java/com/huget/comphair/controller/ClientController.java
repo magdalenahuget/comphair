@@ -63,7 +63,6 @@ public class ClientController {
 
     @DeleteMapping("/clients/delete/{clientId}")
     public ResponseEntity<HttpStatus> deleteClient(@PathVariable("clientId") long clientId) {
-        clientRepository.deleteById(clientId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
