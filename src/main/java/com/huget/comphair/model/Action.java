@@ -27,13 +27,13 @@ public class Action {
     private String name;
 
     @Column(name = "price")
-    private String price;
+    private double price;
 
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
                     CascadeType.PERSIST,
                     CascadeType.MERGE},
-            mappedBy = "tags")
+            mappedBy = "actions")
     @JsonIgnore
-    private Set<Hairdresser> tutorials = new HashSet<>();
+    private Set<Hairdresser> hairdressers = new HashSet<>();
 }
