@@ -34,6 +34,18 @@ public class HairdresserController {
         } else {
             hairdresserRepository.findByHairdresserType(hairdresserType).forEach(hairdressers::add);
         }
+
+        if (hairdresserType == null) {
+            hairdresserRepository.findAll().forEach(hairdressers::add);
+        } else {
+            hairdresserRepository.findByHairdresserType(hairdresserType).forEach(hairdressers::add);
+        }
+
+        if (hairdresserType == null) {
+            hairdresserRepository.findAll().forEach(hairdressers::add);
+        } else {
+            hairdresserRepository.findByHairdresserType(hairdresserType).forEach(hairdressers::add);
+        }
         if (hairdressers.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
