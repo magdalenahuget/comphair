@@ -35,17 +35,6 @@ public class HairdresserController {
             hairdresserRepository.findByHairdresserType(hairdresserType).forEach(hairdressers::add);
         }
 
-        if (hairdresserType == null) {
-            hairdresserRepository.findAll().forEach(hairdressers::add);
-        } else {
-            hairdresserRepository.findByHairdresserType(hairdresserType).forEach(hairdressers::add);
-        }
-
-        if (hairdresserType == null) {
-            hairdresserRepository.findAll().forEach(hairdressers::add);
-        } else {
-            hairdresserRepository.findByHairdresserType(hairdresserType).forEach(hairdressers::add);
-        }
         if (hairdressers.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -56,6 +45,15 @@ public class HairdresserController {
     public ResponseEntity<Hairdresser> getHairdresserById(@PathVariable("id") long id) {
         Hairdresser hairdresser = hairdresserRepository.findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException("Not found hairdresser with id = " + id));
+        return new ResponseEntity<>(hairdresser, HttpStatus.OK);
+    }
+
+    @GetMapping("/hairdressers/{email}")
+    public ResponseEntity<Hairdresser> getHairdresserByEmail(@PathVariable("email") String email) {
+        Hairdresser hairdresser = hairdresserRepository.findByEmail(email);
+        if (hairdresser == null) {
+            throw new ResourceNotFoundException("Not found hairdresser with email = " + email);
+        }
         return new ResponseEntity<>(hairdresser, HttpStatus.OK);
     }
 
