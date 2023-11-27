@@ -1,8 +1,8 @@
 package com.huget.comphair.security;
 
-import com.company.solarwatch.security.jwt.AuthEntryPointJwt;
-import com.company.solarwatch.security.jwt.AuthTokenFilter;
-import com.company.solarwatch.security.jwt.JwtUtils;
+import com.huget.comphair.security.jwt.AuthEntryPointJwt;
+import com.huget.comphair.security.jwt.AuthTokenFilter;
+import com.huget.comphair.security.jwt.JwtUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
