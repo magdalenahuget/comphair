@@ -33,10 +33,4 @@ public class HairdresserDetails {
     @JoinColumn(name ="hairdresser_id")
     private Hairdresser hairdresser;
 
-    public HairdresserDetails(String firstName, String lastName, String description, Hairdresser hairdresser) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.description = description;
-        this.hairdresser = hairdresser;
-    }
 }
