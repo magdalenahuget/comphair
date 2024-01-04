@@ -17,8 +17,9 @@ Welcome to the Hairdresser Management App! This application is designed to simpl
 
 ## Technologies Used
 - Java - version 17.0.0
-- Spring Boot - version 3.1.5
-- PostgreSQL 15.3
+- Spring Boot 3.1.4 (with Spring Web MVC, Spring Data JPA)
+- PostgreSQL 42.x.x
+- Maven
 
 ## Features
 The features used in "Before After" allowed to build a fully functional web application in line with current trends.
@@ -31,16 +32,26 @@ The features used in "Before After" allowed to build a fully functional web appl
 | <img height="50" src="https://user-images.githubusercontent.com/25181517/117208740-bfb78400-adf5-11eb-97bb-09072b6bedfc.png"> |   PostgreSQL    | Enables storage and management of data.|
 | <img height="50" src="https://user-images.githubusercontent.com/25181517/117207330-263ba280-adf4-11eb-9b97-0ac5b40bc3be.png"> |     Docker      | Allows for deployment of application – in progress. |
 
-# Key features
-## Visit History
+## Screenshots
+TODO
+
+## Setup
+TODO
+
+## Usage
+
+### Visit History
 Keep track of clients' appointment history, making it easier to schedule future appointments and understand their preferences.
-## Before-and-After Photos
+### Before-and-After Photos
 Showcase your work by uploading photos of clients before and after their hairstyling sessions.
-## Client Notes
+### Client Notes
 Maintain detailed notes about each client, including the products used and specific preferences, ensuring personalized and consistent service.
 
-# Technology stack
-- Java 17
-- Spring Boot 3.1.4 (with Spring Web MVC, Spring Data JPA)
-- PostgreSQL 42.x.x
-- Maven
+
+## Project Status
+Project is: _in progress_
+
+## Room for Improvement
+
+## Authors
+Magdalena Huget
