@@ -13,6 +13,10 @@ Welcome to the Hairdresser Management App! This application is designed to simpl
 * [Room for Improvement](#room-for-improvement)
 * [Authors](#authors)
 
+## Technologies Used
+- Java - version 17.0.0
+- Spring Boot - version 3.1.5
+- PostgreSQL 15.3
 
 # Key features
 ## Visit History
