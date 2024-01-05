@@ -1,12 +1,13 @@
 package com.huget.comphair.service;
 
 import com.huget.comphair.model.Hairdresser;
+import com.huget.comphair.model.HairdresserType;
 
 import java.util.List;
 
 public interface HairdresserService {
 
-    List<Hairdresser> getAllHairdressers();
+    List<Hairdresser> getAllHairdressers(HairdresserType hairdresserType);
 
     Hairdresser getHairdresser();
 
