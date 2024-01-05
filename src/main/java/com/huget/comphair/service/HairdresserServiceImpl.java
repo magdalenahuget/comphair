@@ -3,6 +3,7 @@ package com.huget.comphair.service;
 import com.huget.comphair.exception.ResourceNotFoundException;
 import com.huget.comphair.model.Hairdresser;
 import com.huget.comphair.model.HairdresserType;
+import com.huget.comphair.repository.HairdresserDetailsRepository;
 import com.huget.comphair.repository.HairdresserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,13 +14,15 @@ import java.util.List;
 
 @Slf4j
 @Service
-public class HairdresserServiceImpl implements HairdresserService{
+public class HairdresserServiceImpl implements HairdresserService {
 
     HairdresserRepository hairdresserRepository;
+    HairdresserDetailsRepository hairdresserDetailsRepository;
 
     @Autowired
-    public HairdresserServiceImpl(HairdresserRepository hairdresserRepository) {
+    public HairdresserServiceImpl(HairdresserRepository hairdresserRepository, HairdresserDetailsRepository hairdresserDetailsRepository) {
         this.hairdresserRepository = hairdresserRepository;
+        this.hairdresserDetailsRepository = hairdresserDetailsRepository;
     }
 
     @Override
@@ -38,8 +41,8 @@ public class HairdresserServiceImpl implements HairdresserService{
     @Override
     public Hairdresser getHairdresserById(long hairdresserId) {
         log.info("Getting hairdresser by id: {}", hairdresserId);
-        Hairdresser hairdresser =  hairdresserRepository.findById(hairdresserId)
-                .orElseThrow(()-> new ResourceNotFoundException("Not found hairdresser with id = " + hairdresserId));
+        Hairdresser hairdresser = hairdresserRepository.findById(hairdresserId)
+                .orElseThrow(() -> new ResourceNotFoundException("Not found hairdresser with id = " + hairdresserId));
         return hairdresser;
     }
 
@@ -54,8 +57,12 @@ public class HairdresserServiceImpl implements HairdresserService{
     }
 
     @Override
-    public void deleteHairdresser() {
-
+    public void deleteHairdresser(long hairdresserId) {
+        log.info("Hairdresser with id:{}", hairdresserId);
+        if (hairdresserDetailsRepository.existsById(hairdresserId)) {
+            hairdresserDetailsRepository.deleteById(hairdresserId);
+        }
+        hairdresserRepository.deleteById(hairdresserId);
     }
 
     @Override
