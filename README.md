@@ -5,8 +5,7 @@ Welcome to the Hairdresser Management App!
 ## Table of Contents
 * [General Info](#general-information)
 * [Technologies Used](#technologies-used)
-* [Features](#features)
-<!-- * [Screenshots](#screenshots)-->
+* [Features](#features)<!-- * [Screenshots](#screenshots)-->
 * [Setup](#setup)
 * [Usage](#usage)
 * [Project Status](#project-status)
