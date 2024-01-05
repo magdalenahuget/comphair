@@ -15,7 +15,7 @@ public interface HairdresserService {
 
     Hairdresser updateHairdresser();
 
-    void deleteHairdresser();
+    void deleteHairdresser(long hairdresserId);
 
     void deleteAllHairdressers();
 }
