@@ -5,6 +5,7 @@ import com.huget.comphair.model.Hairdresser;
 import com.huget.comphair.model.HairdresserType;
 import com.huget.comphair.repository.HairdresserDetailsRepository;
 import com.huget.comphair.repository.HairdresserRepository;
+import com.huget.comphair.service.HairdresserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,7 @@ public class HairdresserController {
 
     @Autowired
     HairdresserRepository hairdresserRepository;
+    HairdresserService hairdresserService;
 
     @Autowired
     private HairdresserDetailsRepository detailsRepository;
@@ -28,12 +30,14 @@ public class HairdresserController {
     @GetMapping("/hairdressers")
     public ResponseEntity<List<Hairdresser>> getAllHairdressers(@RequestParam(required = false) HairdresserType hairdresserType) {
         List<Hairdresser> hairdressers = new ArrayList<Hairdresser>();
+//
+//        if (hairdresserType == null) {
+//            hairdresserRepository.findAll().forEach(hairdressers::add);
+//        } else {
+//            hairdresserRepository.findByHairdresserType(hairdresserType).forEach(hairdressers::add);
+//        }
 
-        if (hairdresserType == null) {
-            hairdresserRepository.findAll().forEach(hairdressers::add);
-        } else {
-            hairdresserRepository.findByHairdresserType(hairdresserType).forEach(hairdressers::add);
-        }
+        hairdressers =  hairdresserService.getAllHairdressers(hairdresserType);
 
         if (hairdressers.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
