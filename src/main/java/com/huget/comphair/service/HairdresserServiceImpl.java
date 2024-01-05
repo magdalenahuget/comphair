@@ -1,5 +1,6 @@
 package com.huget.comphair.service;
 
+import com.huget.comphair.exception.ResourceNotFoundException;
 import com.huget.comphair.model.Hairdresser;
 import com.huget.comphair.model.HairdresserType;
 import com.huget.comphair.repository.HairdresserRepository;
@@ -35,8 +36,11 @@ public class HairdresserServiceImpl implements HairdresserService{
     }
 
     @Override
-    public Hairdresser getHairdresser() {
-        return null;
+    public Hairdresser getHairdresserById(long hairdresserId) {
+        log.info("Getting hairdresser by id: {}", hairdresserId);
+        Hairdresser hairdresser =  hairdresserRepository.findById(hairdresserId)
+                .orElseThrow(()-> new ResourceNotFoundException("Not found hairdresser with id = " + hairdresserId));
+        return hairdresser;
     }
 
     @Override
