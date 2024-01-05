@@ -5,6 +5,7 @@ import com.huget.comphair.model.Hairdresser;
 import com.huget.comphair.model.HairdresserType;
 import com.huget.comphair.repository.HairdresserDetailsRepository;
 import com.huget.comphair.repository.HairdresserRepository;
+import com.huget.comphair.service.HairdresserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,7 @@ public class HairdresserController {
 
     @Autowired
     HairdresserRepository hairdresserRepository;
+    HairdresserService hairdresserService;
 
     @Autowired
     private HairdresserDetailsRepository detailsRepository;
@@ -28,12 +30,14 @@ public class HairdresserController {
     @GetMapping("/hairdressers")
     public ResponseEntity<List<Hairdresser>> getAllHairdressers(@RequestParam(required = false) HairdresserType hairdresserType) {
         List<Hairdresser> hairdressers = new ArrayList<Hairdresser>();
+//
+//        if (hairdresserType == null) {
+//            hairdresserRepository.findAll().forEach(hairdressers::add);
+//        } else {
+//            hairdresserRepository.findByHairdresserType(hairdresserType).forEach(hairdressers::add);
+//        }
 
-        if (hairdresserType == null) {
-            hairdresserRepository.findAll().forEach(hairdressers::add);
-        } else {
-            hairdresserRepository.findByHairdresserType(hairdresserType).forEach(hairdressers::add);
-        }
+        hairdressers =  hairdresserService.getAllHairdressers(hairdresserType);
 
         if (hairdressers.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -43,8 +47,9 @@ public class HairdresserController {
 
     @GetMapping("/hairdressers/{id}")
     public ResponseEntity<Hairdresser> getHairdresserById(@PathVariable("id") long id) {
-        Hairdresser hairdresser = hairdresserRepository.findById(id)
-                .orElseThrow(()-> new ResourceNotFoundException("Not found hairdresser with id = " + id));
+//        Hairdresser hairdresser = hairdresserRepository.findById(id)
+//                .orElseThrow(()-> new ResourceNotFoundException("Not found hairdresser with id = " + id));
+        Hairdresser hairdresser = hairdresserService.getHairdresserById(id);
         return new ResponseEntity<>(hairdresser, HttpStatus.OK);
     }
 
@@ -80,10 +85,11 @@ public class HairdresserController {
 
     @DeleteMapping("/hairdressers/{id}")
     public ResponseEntity<HttpStatus> deleteHairdresser(@PathVariable("id") long id) {
-        if(detailsRepository.existsById(id)){
-            detailsRepository.deleteById(id);
-        }
-        hairdresserRepository.deleteById(id);
+//        if(detailsRepository.existsById(id)){
+//            detailsRepository.deleteById(id);
+//        }
+//        hairdresserRepository.deleteById(id);
+        hairdresserService.deleteHairdresser(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
