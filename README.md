@@ -1,6 +1,6 @@
 # comphair
 
-Welcome to the Hairdresser Management App! This application is designed to simplify the management of services provided to customers by hairstylists. With this app, stylists can effortlessly keep track of their clients' visit history and showcase their skills through before-and-after photos of stunning makeovers.
+Welcome to the Hairdresser Management App! 
 
 ## Table of Contents
 * [General Info](#general-information)
@@ -14,6 +14,8 @@ Welcome to the Hairdresser Management App! This application is designed to simpl
 * [Authors](#authors)
 
 ## General Information
+
+This application is designed to simplify the management of services provided to customers by hairstylists. With this app, stylists can effortlessly keep track of their clients' visit history and showcase their skills through before-and-after photos of stunning makeovers.
 
 ## Technologies Used
 - Java - version 17.0.0
@@ -60,6 +62,8 @@ Maintain detailed notes about each client, including the products used and speci
 Project is: _in progress_
 
 ## Room for Improvement
+
+To do: frontend application part
 
 ## Authors
 Magdalena Huget
