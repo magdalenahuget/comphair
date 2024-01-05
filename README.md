@@ -6,7 +6,7 @@ Welcome to the Hairdresser Management App!
 * [General Info](#general-information)
 * [Technologies Used](#technologies-used)
 * [Features](#features)
-* [Screenshots](#screenshots)
+<!-- * [Screenshots](#screenshots)-->
 * [Setup](#setup)
 * [Usage](#usage)
 * [Project Status](#project-status)
@@ -34,8 +34,8 @@ The features used in "Before After" allowed to build a fully functional web appl
 | <img height="50" src="https://user-images.githubusercontent.com/25181517/117208740-bfb78400-adf5-11eb-97bb-09072b6bedfc.png"> |   PostgreSQL    | Enables storage and management of data.|
 | <img height="50" src="https://user-images.githubusercontent.com/25181517/117207330-263ba280-adf4-11eb-9b97-0ac5b40bc3be.png"> |     Docker      | Allows for deployment of application – in progress. |
 
-## Screenshots
-TODO
+<!--## Screenshots
+TODO-->
 
 ## Setup
 1. *Install Git* - Make sure you have the Git version control system installed on your computer.
