@@ -47,8 +47,9 @@ public class HairdresserController {
 
     @GetMapping("/hairdressers/{id}")
     public ResponseEntity<Hairdresser> getHairdresserById(@PathVariable("id") long id) {
-        Hairdresser hairdresser = hairdresserRepository.findById(id)
-                .orElseThrow(()-> new ResourceNotFoundException("Not found hairdresser with id = " + id));
+//        Hairdresser hairdresser = hairdresserRepository.findById(id)
+//                .orElseThrow(()-> new ResourceNotFoundException("Not found hairdresser with id = " + id));
+        Hairdresser hairdresser = hairdresserService.getHairdresserById(id);
         return new ResponseEntity<>(hairdresser, HttpStatus.OK);
     }
 
