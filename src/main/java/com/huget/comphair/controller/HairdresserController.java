@@ -85,10 +85,11 @@ public class HairdresserController {
 
     @DeleteMapping("/hairdressers/{id}")
     public ResponseEntity<HttpStatus> deleteHairdresser(@PathVariable("id") long id) {
-        if(detailsRepository.existsById(id)){
-            detailsRepository.deleteById(id);
-        }
-        hairdresserRepository.deleteById(id);
+//        if(detailsRepository.existsById(id)){
+//            detailsRepository.deleteById(id);
+//        }
+//        hairdresserRepository.deleteById(id);
+        hairdresserService.deleteHairdresser(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
