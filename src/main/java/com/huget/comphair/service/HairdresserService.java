@@ -9,7 +9,7 @@ public interface HairdresserService {
 
     List<Hairdresser> getAllHairdressers(HairdresserType hairdresserType);
 
-    Hairdresser getHairdresser();
+    Hairdresser getHairdresserById(long hairdresserId);
 
     Hairdresser createHairdresser();
 
