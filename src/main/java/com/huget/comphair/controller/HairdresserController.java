@@ -55,32 +55,35 @@ public class HairdresserController {
 
     @GetMapping("/hairdressers/{email}")
     public ResponseEntity<Hairdresser> getHairdresserByEmail(@PathVariable("email") String email) {
-        Hairdresser hairdresser = hairdresserRepository.findByEmail(email);
-        if (hairdresser == null) {
-            throw new ResourceNotFoundException("Not found hairdresser with email = " + email);
-        }
+//        Hairdresser hairdresser = hairdresserRepository.findByEmail(email);
+//        if (hairdresser == null) {
+//            throw new ResourceNotFoundException("Not found hairdresser with email = " + email);
+//        }
+        Hairdresser hairdresser = hairdresserService.getHairdresserByEmail(email);
         return new ResponseEntity<>(hairdresser, HttpStatus.OK);
     }
 
     @PostMapping("/hairdressers")
     public ResponseEntity<Hairdresser> createHairdresser(@RequestBody Hairdresser hairdresser){
-        Hairdresser hairdresser1 = hairdresserRepository.save(new Hairdresser(
-                hairdresser.getNick(),
-                hairdresser.getHairdresserType(),
-                hairdresser.getEmail(),
-                hairdresser.getPassword()));
-        return new ResponseEntity<>(hairdresser1, HttpStatus.CREATED);
+//        Hairdresser hairdresser1 = hairdresserRepository.save(new Hairdresser(
+//                hairdresser.getNick(),
+//                hairdresser.getHairdresserType(),
+//                hairdresser.getEmail(),
+//                hairdresser.getPassword()));
+        Hairdresser hairdresserCreated = hairdresserService.createHairdresser(hairdresser);
+        return new ResponseEntity<>(hairdresserCreated, HttpStatus.CREATED);
     }
 
     @PutMapping("/hairdressers/{id}")
     public ResponseEntity<Hairdresser> updateHairdresser(@PathVariable("id") long id, @RequestBody Hairdresser hairdresser){
-        Hairdresser hairdresser1 = hairdresserRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Not found Hairdresser with id = " + id));
-        hairdresser1.setNick(hairdresser.getNick());
-        hairdresser1.setHairdresserType(hairdresser.getHairdresserType());
-        hairdresser1.setEmail(hairdresser1.getEmail());
-        hairdresser1.setPassword(hairdresser1.getPassword());
-        return new ResponseEntity<>(hairdresserRepository.save(hairdresser), HttpStatus.OK);
+//        Hairdresser hairdresser1 = hairdresserRepository.findById(id)
+//                .orElseThrow(() -> new ResourceNotFoundException("Not found Hairdresser with id = " + id));
+//        hairdresser1.setNick(hairdresser.getNick());
+//        hairdresser1.setHairdresserType(hairdresser.getHairdresserType());
+//        hairdresser1.setEmail(hairdresser1.getEmail());
+//        hairdresser1.setPassword(hairdresser1.getPassword());
+        Hairdresser hairdresserUpdated = hairdresserService.updateHairdresser(id, hairdresser);
+        return new ResponseEntity<>(hairdresserUpdated, HttpStatus.OK);
     }
 
     @DeleteMapping("/hairdressers/{id}")
@@ -95,7 +98,7 @@ public class HairdresserController {
 
     @DeleteMapping("/hairdressers")
     public ResponseEntity<HttpStatus> deleteAllHairdressers(){
-        hairdresserRepository.deleteAll();
+        hairdresserService.deleteAllHairdressers();
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
