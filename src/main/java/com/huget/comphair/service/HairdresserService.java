@@ -2,6 +2,7 @@ package com.huget.comphair.service;
 
 import com.huget.comphair.model.Hairdresser;
 import com.huget.comphair.model.HairdresserType;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -11,9 +12,11 @@ public interface HairdresserService {
 
     Hairdresser getHairdresserById(long hairdresserId);
 
-    Hairdresser createHairdresser();
+    Hairdresser getHairdresserByEmail(String email);
 
-    Hairdresser updateHairdresser();
+    Hairdresser createHairdresser(Hairdresser hairdresser);
+
+    Hairdresser updateHairdresser(long id, @RequestBody Hairdresser hairdresser);
 
     void deleteHairdresser(long hairdresserId);
 

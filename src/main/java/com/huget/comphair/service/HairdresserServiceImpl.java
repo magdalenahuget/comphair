@@ -8,6 +8,7 @@ import com.huget.comphair.repository.HairdresserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,13 +48,36 @@ public class HairdresserServiceImpl implements HairdresserService {
     }
 
     @Override
-    public Hairdresser createHairdresser() {
-        return null;
+    public Hairdresser getHairdresserByEmail(String email) {
+        log.info("Getting hairdresser by email: {}", email);
+        Hairdresser hairdresser = hairdresserRepository.findByEmail(email);
+        if (hairdresser == null) {
+            throw new ResourceNotFoundException("Not found hairdresser with email = " + email);
+        }
+        return hairdresser;
     }
 
     @Override
-    public Hairdresser updateHairdresser() {
-        return null;
+    public Hairdresser createHairdresser(Hairdresser hairdresser) {
+        Hairdresser hairdresserCreated = hairdresserRepository.save(new Hairdresser(
+                hairdresser.getNick(),
+                hairdresser.getHairdresserType(),
+                hairdresser.getEmail(),
+                hairdresser.getPassword()));
+        return hairdresserCreated;
+    }
+
+    @Override
+    public Hairdresser updateHairdresser(long hairdresserId, @RequestBody Hairdresser hairdresser) {
+        Hairdresser hairdresserUpdated = hairdresserRepository.findById(hairdresserId)
+                .orElseThrow(() -> new ResourceNotFoundException("Not found Hairdresser with id = " + hairdresserId));
+        hairdresserUpdated.setNick(hairdresser.getNick());
+        hairdresserUpdated.setHairdresserType(hairdresser.getHairdresserType());
+        hairdresserUpdated.setEmail(hairdresserUpdated.getEmail());
+        hairdresserUpdated.setPassword(hairdresserUpdated.getPassword());
+        hairdresserRepository.save(hairdresserUpdated);
+        log.info("Hairdresser has been updated with id:{}", hairdresserId);
+        return hairdresserUpdated;
     }
 
     @Override
@@ -67,6 +91,7 @@ public class HairdresserServiceImpl implements HairdresserService {
 
     @Override
     public void deleteAllHairdressers() {
-
+        hairdresserRepository.deleteAll();
+        log.info("All hairdressers has been deleted");
     }
 }
