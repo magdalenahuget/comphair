@@ -20,7 +20,6 @@ public class HairdresserController {
     HairdresserRepository hairdresserRepository;
     HairdresserService hairdresserService;
 
-
     @GetMapping("/hairdressers")
     public ResponseEntity<List<Hairdresser>> getAllHairdressers(@RequestParam(required = false) HairdresserType hairdresserType) {
         List<Hairdresser> hairdressers = hairdresserService.getAllHairdressers(hairdresserType);
