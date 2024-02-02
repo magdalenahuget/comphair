@@ -5,7 +5,11 @@ import com.huget.comphair.model.Hairdresser;
 import com.huget.comphair.model.HairdresserDetails;
 import com.huget.comphair.repository.HairdresserDetailsRepository;
 import com.huget.comphair.repository.HairdresserRepository;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
+@Slf4j
+@Service
 public class HairdresserDetailsServiceImpl implements HairdresserDetailsService{
 
     private HairdresserDetailsRepository hairdresserDetailsRepository;

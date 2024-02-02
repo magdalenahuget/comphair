@@ -62,10 +62,8 @@ public class WebSecurityConfig {
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth ->
-                        auth.requestMatchers("user/**").permitAll()
+                        auth.requestMatchers("api/hairdressers/**").permitAll()
                                 .requestMatchers("team/**").hasRole("USER")
-                                .requestMatchers("/error").permitAll()
-                                .requestMatchers("/solar-watch").permitAll()
                                 .anyRequest().authenticated()
 
                 );
