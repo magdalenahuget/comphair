@@ -2,7 +2,6 @@ package com.huget.comphair.controller;
 
 import com.huget.comphair.model.Hairdresser;
 import com.huget.comphair.model.HairdresserType;
-import com.huget.comphair.repository.HairdresserRepository;
 import com.huget.comphair.service.HairdresserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,9 +14,12 @@ import java.util.List;
 @RequestMapping("/api")
 public class HairdresserController {
 
+    private final HairdresserService hairdresserService;
+
     @Autowired
-    HairdresserRepository hairdresserRepository;
-    HairdresserService hairdresserService;
+    public HairdresserController(HairdresserService hairdresserService) {
+        this.hairdresserService = hairdresserService;
+    }
 
     @GetMapping("/hairdressers")
     public ResponseEntity<List<Hairdresser>> getAllHairdressers(@RequestParam(required = false) HairdresserType hairdresserType) {
