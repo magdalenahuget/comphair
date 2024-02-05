@@ -7,7 +7,6 @@ import com.huget.comphair.model.Role;
 import com.huget.comphair.model.RoleType;
 import com.huget.comphair.repository.HairdresserDetailsRepository;
 import com.huget.comphair.repository.HairdresserRepository;
-import com.huget.comphair.repository.RoleRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,14 +21,12 @@ public class HairdresserServiceImpl implements HairdresserService {
 
     HairdresserRepository hairdresserRepository;
     HairdresserDetailsRepository hairdresserDetailsRepository;
-    private final RoleRepository roleRepository;
     private final RoleService roleService;
 
     @Autowired
-    public HairdresserServiceImpl(HairdresserRepository hairdresserRepository, HairdresserDetailsRepository hairdresserDetailsRepository, RoleRepository roleRepository, RoleService roleService) {
+    public HairdresserServiceImpl(HairdresserRepository hairdresserRepository, HairdresserDetailsRepository hairdresserDetailsRepository, RoleService roleService) {
         this.hairdresserRepository = hairdresserRepository;
         this.hairdresserDetailsRepository = hairdresserDetailsRepository;
-        this.roleRepository = roleRepository;
         this.roleService = roleService;
     }
 
@@ -51,6 +48,7 @@ public class HairdresserServiceImpl implements HairdresserService {
         log.info("Getting hairdresser by id: {}", hairdresserId);
         Hairdresser hairdresser = hairdresserRepository.findById(hairdresserId)
                 .orElseThrow(() -> new ResourceNotFoundException("Not found hairdresser with id = " + hairdresserId));
+        log.info("Got hairdresser: {}", hairdresser);
         return hairdresser;
     }
 
@@ -61,6 +59,7 @@ public class HairdresserServiceImpl implements HairdresserService {
         if (hairdresser == null) {
             throw new ResourceNotFoundException("Not found hairdresser with email = " + email);
         }
+        log.info("Got hairdresser: {}", hairdresser);
         return hairdresser;
     }
 
@@ -106,6 +105,7 @@ public class HairdresserServiceImpl implements HairdresserService {
             hairdresserDetailsRepository.deleteById(hairdresserId);
         }
         hairdresserRepository.deleteById(hairdresserId);
+        log.info("User with id {} has been deleted", hairdresserId);
     }
 
     @Override
