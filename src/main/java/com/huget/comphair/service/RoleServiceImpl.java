@@ -20,4 +20,15 @@ public class RoleServiceImpl implements RoleService{
     public Role findByName(RoleType roleTypeName) {
         return roleRepository.findByName(roleTypeName);
     }
+
+    /**
+     * Creates default roles in the system.
+     */
+    @Override
+    public void createRoles() {
+        for (RoleType roleType : RoleType.values()) {
+            Role role = new Role(roleType);
+            roleRepository.save(role);
+        }
+    }
 }

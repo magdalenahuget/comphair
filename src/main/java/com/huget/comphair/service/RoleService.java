@@ -7,4 +7,6 @@ public interface RoleService {
 
     Role findByName(RoleType roleTypeName);
 
+    void createRoles();
+
 }
