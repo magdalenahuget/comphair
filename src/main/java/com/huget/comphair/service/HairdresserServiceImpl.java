@@ -80,6 +80,8 @@ public class HairdresserServiceImpl implements HairdresserService {
         } catch (NullPointerException e) {
             throw new ResourceNotFoundException("No roles in database");
         }
+        log.debug("[RESPONSE] New user created: {}", hairdresserCreated);
+        log.info("[ACTION] User has been successfully created.");
         return hairdresserCreated;
     }
 
@@ -98,7 +100,8 @@ public class HairdresserServiceImpl implements HairdresserService {
 
     @Override
     public void deleteHairdresser(long hairdresserId) {
-        log.info("Hairdresser with id:{}", hairdresserId);
+        log.info("[ACTION] Deleting specified user.");
+        log.debug("[REQUEST] Deleting user with id: {}", hairdresserId);
         if (hairdresserDetailsRepository.existsById(hairdresserId)) {
             hairdresserDetailsRepository.deleteById(hairdresserId);
         }
