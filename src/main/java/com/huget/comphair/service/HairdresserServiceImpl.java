@@ -3,14 +3,18 @@ package com.huget.comphair.service;
 import com.huget.comphair.exception.ResourceNotFoundException;
 import com.huget.comphair.model.Hairdresser;
 import com.huget.comphair.model.HairdresserType;
+import com.huget.comphair.model.Role;
+import com.huget.comphair.model.RoleType;
 import com.huget.comphair.repository.HairdresserDetailsRepository;
 import com.huget.comphair.repository.HairdresserRepository;
+import com.huget.comphair.repository.RoleRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Slf4j
 @Service
@@ -18,11 +22,15 @@ public class HairdresserServiceImpl implements HairdresserService {
 
     HairdresserRepository hairdresserRepository;
     HairdresserDetailsRepository hairdresserDetailsRepository;
+    private final RoleRepository roleRepository;
+    private final RoleService roleService;
 
     @Autowired
-    public HairdresserServiceImpl(HairdresserRepository hairdresserRepository, HairdresserDetailsRepository hairdresserDetailsRepository) {
+    public HairdresserServiceImpl(HairdresserRepository hairdresserRepository, HairdresserDetailsRepository hairdresserDetailsRepository, RoleRepository roleRepository, RoleService roleService) {
         this.hairdresserRepository = hairdresserRepository;
         this.hairdresserDetailsRepository = hairdresserDetailsRepository;
+        this.roleRepository = roleRepository;
+        this.roleService = roleService;
     }
 
     @Override
@@ -58,11 +66,20 @@ public class HairdresserServiceImpl implements HairdresserService {
 
     @Override
     public Hairdresser createHairdresser(Hairdresser hairdresser) {
+        log.debug("[DETAILS] Provided hairdresser: {}", hairdresser);
+        log.info("[ACTION] Creating a new user.");
+        RoleType roleType = RoleType.ROLE_USER;
+        Role role = roleService.findByName(roleType);
         Hairdresser hairdresserCreated = hairdresserRepository.save(new Hairdresser(
                 hairdresser.getNick(),
                 hairdresser.getHairdresserType(),
                 hairdresser.getEmail(),
                 hairdresser.getPassword()));
+        try {
+            hairdresserCreated.setRoles(Set.of(role));
+        } catch (NullPointerException e) {
+            throw new ResourceNotFoundException("No roles in database");
+        }
         return hairdresserCreated;
     }
 
