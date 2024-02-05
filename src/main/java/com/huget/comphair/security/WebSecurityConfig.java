@@ -63,6 +63,7 @@ public class WebSecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth ->
                         auth.requestMatchers("api/hairdressers/**").permitAll()
+                                .requestMatchers("api/details/**").hasRole("USER")
                                 .requestMatchers("team/**").hasRole("USER")
                                 .anyRequest().authenticated()
 
